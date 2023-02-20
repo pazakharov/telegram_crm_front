@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import Chains from '@/modules/chains/router/index'
 Vue.use(Router)
 
 /* Layout */
@@ -54,6 +54,7 @@ export const constantRoutes = [
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }]
   },
+  Chains,
 
   // {
   //   path: '/example',
