@@ -4,14 +4,14 @@ import store from '@/store'
 import { getToken } from '@/utils/auth'
 
 // create an axios instance
-const service = axios.create({
+const ApiRequest = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 })
 
 // request interceptor
-service.interceptors.request.use(
+ApiRequest.interceptors.request.use(
   config => {
     // do something before request is sent
 
@@ -31,7 +31,7 @@ service.interceptors.request.use(
 )
 
 // response interceptor
-service.interceptors.response.use(
+ApiRequest.interceptors.response.use(
   /**
    * If you want to get http information such as headers or status
    * Please return  response => response
@@ -46,7 +46,7 @@ service.interceptors.response.use(
     const res = response.data
 
     // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 20000) {
+    if (response.status >= 400) {
       Message({
         message: res.message || 'Error',
         type: 'error',
@@ -82,4 +82,4 @@ service.interceptors.response.use(
   }
 )
 
-export default service
+export default ApiRequest
