@@ -1,6 +1,8 @@
+const baseApi = process.env.VUE_APP_BASE_API
+
 module.exports = {
 
-  title: 'Vue Admin Template',
+  title: 'Telagram CRM',
 
   /**
    * @type {boolean} true | false
@@ -12,5 +14,6 @@ module.exports = {
    * @type {boolean} true | false
    * @description Whether show the logo in sidebar
    */
-  sidebarLogo: false
+  sidebarLogo: false,
+  baseApi: baseApi
 }

@@ -4,9 +4,8 @@
       <el-row :gutter="20">
         <el-col :span="20" :offset="0">Цепочки сообщений</el-col>
         <el-col :span="4" :offset="0">
-          <el-button title="Добавить цепочку" type="primary" size="mini" @click="addChain">+</el-button></el-col>
+          <el-button v-loading="loading" title="Добавить цепочку" type="primary" size="mini" icon="el-icon-circle-plus-outline" @click="addChain" /></el-col>
       </el-row>
-
     </div>
     <draggable
       :list="chains"
@@ -15,7 +14,7 @@
       :set-data="setData"
       handle=".handle"
     >
-      <div v-for="chain in chains" :key="chain.id" class="board-item">
+      <div v-for="chain in chains" :key="chain.id" class="board-item" @click="setCurrentChain(chain)">
         <el-row :gutter="0">
           <el-col :span="20" :offset="0">
             <div v-if="!chain.edit" @dblclick="chain.edit = true">
@@ -69,7 +68,11 @@ export default {
     }
   },
   computed: {
-    ...mapState('chains', ['loading', 'chains'])
+    ...mapState('chains', [
+      'loading',
+      'currentChain',
+      'chains'
+    ])
   },
   mounted() {
     this.fetch()
@@ -80,7 +83,8 @@ export default {
         fetch: 'chains/fetch',
         create: 'chains/create',
         delete: 'chains/delete',
-        update: 'chains/update'
+        update: 'chains/update',
+        setCurrentChain: 'chains/setCurrentChain'
       }
     ),
     setData(dataTransfer) {

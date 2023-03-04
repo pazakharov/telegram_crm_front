@@ -14,7 +14,7 @@ export default
       name: 'chains',
       component: () => import('@/modules/chains/views/index'),
       meta: {
-        title: 'Цепочки',
+        title: 'Цепочки и сообщения',
         icon: 'el-icon-link' }
     }]
 }

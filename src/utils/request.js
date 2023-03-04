@@ -2,6 +2,7 @@ import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
+import qs from 'qs'
 
 // create an axios instance
 const ApiRequest = axios.create({
@@ -14,7 +15,9 @@ const ApiRequest = axios.create({
 ApiRequest.interceptors.request.use(
   config => {
     // do something before request is sent
-
+    config.paramsSerializer = params => {
+      return qs.stringify(params, { arrayFormat: 'brackets', skipNulls: true })
+    }
     if (store.getters.token) {
       // let each request carry token
       // ['X-Token'] is a custom headers key
