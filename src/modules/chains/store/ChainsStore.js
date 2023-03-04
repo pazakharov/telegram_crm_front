@@ -97,24 +97,24 @@ const actions = {
   },
   async createMessage({ commit }, data) {
     try {
-      commit('LOADING_ON')
+      commit('LOADING_MESSAGES_ON')
       await MessagesApi.create(data)
     } catch (error) {
       Notification.error({ title: 'Возникла ошибка', message: error })
       console.error('ERROR create Message', error)
     } finally {
-      commit('LOADING_OFF')
+      commit('LOADING_MESSAGES_OFF')
     }
   },
   async deleteMessage({ commit }, { id }) {
     try {
-      commit('LOADING_ON')
+      commit('LOADING_MESSAGES_ON')
       await MessagesApi.delete(id)
     } catch (error) {
       Notification.error({ title: 'Возникла ошибка', message: error })
       console.error('ERROR delete Message', error)
     } finally {
-      commit('LOADING_OFF')
+      commit('LOADING_MESSAGES_OFF')
     }
   }
 }

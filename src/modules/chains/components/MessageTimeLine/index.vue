@@ -64,6 +64,7 @@ export default {
       deleteMessage: 'chains/deleteMessage'
     }),
     updateMessages() {
+      console.log('Update messages')
       this.fetchMessages({ filter: { chain_id: this.currentChain.id }})
     },
     onNewMessage(data) {
@@ -75,7 +76,7 @@ export default {
     },
     onDeleteMessage(message) {
       this.deleteMessage(message).then(
-        this.updateMessages()
+        () => this.updateMessages()
       )
     }
   }
