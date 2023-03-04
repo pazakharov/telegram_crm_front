@@ -21,11 +21,19 @@
       </el-form-item>
       <el-collapse-transition>
         <el-row :gutter="0">
-          <el-col :span="12" :offset="0">
+          <el-col :span="16" :offset="0">
             <el-checkbox v-model="form.compressImage" label="Сжать картинки" :indeterminate="false">Сжать картинки</el-checkbox>
-          </el-col>
-          <el-col :span="12" :offset="0">
             <el-checkbox v-model="form.groupImage" label="Группировать картинки" :indeterminate="false">Группировать картинки</el-checkbox>
+          </el-col>
+          <el-col :span="8" :offset="0">
+            <el-date-picker
+              v-model="form.shouldBePublishedAt"
+              value-format="yyyy-MM-dd HH:mm:ss"
+              type="datetime"
+              size="mini"
+              placeholder="Отложить"
+              style="width:fit-content"
+            />
           </el-col>
         </el-row>
       </el-collapse-transition>

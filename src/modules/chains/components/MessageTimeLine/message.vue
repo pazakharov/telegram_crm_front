@@ -14,7 +14,9 @@
       >
         <i slot="reference" class="el-icon-delete" />
       </el-popconfirm>
-
+      <span v-if="message.should_be_published_at" style="font-weight: bold; color:grey">
+        Отложено на {{ message.should_be_published_at }}
+      </span>
     </div>
     <img v-for="imageFile in imagesFiles" :key="imageFile.id" :src="imageFile.webPath" class="image">
     <div v-for="file in noImagesFiles" :key="file.id" class="file_link">
