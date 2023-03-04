@@ -1,9 +1,9 @@
 <template>
-  <el-card shadow="always" style="width:450px" :body-style="{ padding: '14px' }">
-    <div slot="header">
-      <img :src="false" class="image">
+  <el-card shadow="always" style="width:450px" :body-style="{ padding: '0px' }">
+    <img v-for="imageFile in imagesFiles" :key="imageFile.id" :src="imageFile.webPath" class="image">
+    <div style="padding: 14px;">
+      {{ message.template.text }}
     </div>
-    {{ message.template.text }}
   </el-card>
 
 </template>
@@ -22,7 +22,14 @@ export default {
 
     }
   },
-
+  computed: {
+    imagesFiles() {
+      const images = this.message.template.messageTemplateFiles.filter(
+        (item) => ['jpg', 'png'].includes(item.file_extension)
+      )
+      return images
+    }
+  },
   mounted() {
 
   },

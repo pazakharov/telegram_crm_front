@@ -66,7 +66,7 @@ export default {
       this.createMessage({ ...data, chain_id: this.currentChain.id })
         .then(() => {
           this.$refs.addMessage.resetForm()
-          this.fetchMessages()
+          this.fetchMessages({ filter: { chain_id: this.currentChain.id }})
         })
     }
   }
