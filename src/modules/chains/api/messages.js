@@ -14,7 +14,7 @@ export default {
       url: '/messages',
       data
     })
-  }
+  },
   // update(id, data) {
   //   return ApiRequest({
   //     method: 'patch',
@@ -22,11 +22,10 @@ export default {
   //     data: { ...data }
   //   })
   // }
-
-  // delete(id) {
-  //   return ApiRequest({
-  //     method: 'delete',
-  //     url: `/messages-chains/${id}`
-  //   })
-  // }
+  delete(id) {
+    return ApiRequest({
+      method: 'delete',
+      url: `/messages/${id}`
+    })
+  }
 }

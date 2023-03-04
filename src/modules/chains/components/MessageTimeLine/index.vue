@@ -19,7 +19,7 @@
             type="primary"
             size="normal"
           >
-            <Message :message="message" />
+            <Message :message="message" @delete-message="onDeleteMessage" />
           </el-timeline-item>
         </el-timeline>
       </el-card>
@@ -50,7 +50,7 @@ export default {
   },
   watch: {
     currentChain: function() {
-      this.fetchMessages({ filter: { chain_id: this.currentChain.id }})
+      this.updateMessages()
     }
   },
 
@@ -60,14 +60,23 @@ export default {
   methods: {
     ...mapActions({
       fetchMessages: 'chains/fetchMessages',
-      createMessage: 'chains/createMessage'
+      createMessage: 'chains/createMessage',
+      deleteMessage: 'chains/deleteMessage'
     }),
+    updateMessages() {
+      this.fetchMessages({ filter: { chain_id: this.currentChain.id }})
+    },
     onNewMessage(data) {
       this.createMessage({ ...data, chain_id: this.currentChain.id })
         .then(() => {
           this.$refs.addMessage.resetForm()
-          this.fetchMessages({ filter: { chain_id: this.currentChain.id }})
+          this.updateMessages()
         })
+    },
+    onDeleteMessage(message) {
+      this.deleteMessage(message).then(
+        this.updateMessages()
+      )
     }
   }
 }

@@ -105,6 +105,17 @@ const actions = {
     } finally {
       commit('LOADING_OFF')
     }
+  },
+  async deleteMessage({ commit }, { id }) {
+    try {
+      commit('LOADING_ON')
+      await MessagesApi.delete(id)
+    } catch (error) {
+      Notification.error({ title: 'Возникла ошибка', message: error })
+      console.error('ERROR delete Message', error)
+    } finally {
+      commit('LOADING_OFF')
+    }
   }
 }
 
